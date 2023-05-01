@@ -71,8 +71,8 @@ export const App = () => {
 
 
 
-  const filteredContacts = () => {
-    
+  const filteredContacts = (filter) => {
+    console.log('filter', filter)
     if (filter) {
      
       const visibleFriends = contacts.filter(contact =>

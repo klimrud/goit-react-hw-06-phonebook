@@ -15,7 +15,11 @@ export const ContactForm = ({ onSubmit }) => {
 // })
 
 // dispatch({
-//   type:
+//   type: 'handleStatSubmit',
+//   payload: {
+//      id: '',
+//      name:'',
+//      number: '',}
 // })
 
 

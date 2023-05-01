@@ -1,6 +1,6 @@
 import { initialStateContacts } from './initial';
 
-const { createSlice } = require('@reduxjs/toolkit');
+const { createSlice} = require('@reduxjs/toolkit');
 // const { initialState } = require('store/initialState');
 
 const contactsSlice = createSlice({
