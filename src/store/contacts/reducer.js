@@ -4,8 +4,7 @@ import { contactCreate, contactRemove } from './actions';
 
 export const contactReducer = createReducer(initialState.contacts, {
   [contactCreate]: (state, action) => {
-
- state.contacts.push(action.payload)
+    state.contacts.push(action.payload);
 
     // return {
     //   ...state,
@@ -14,7 +13,7 @@ export const contactReducer = createReducer(initialState.contacts, {
   },
   [contactRemove]: (state, action) => {
     return {
-       ...state,
+      ...state,
       contacts: action.payload,
     };
   },

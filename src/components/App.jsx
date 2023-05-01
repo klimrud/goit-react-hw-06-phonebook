@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 import { ContactForm } from './ContactForm/ContactForm.jsx';
 import { Filter } from './Filter/Filter.jsx';
@@ -47,9 +47,7 @@ export const App = () => {
       dispatch(contactCreate(contact));
     }
   };
-
-
-  // ------------перенесла ContactList.jsx
+ 
   const removeContact = contactId => {
     // setContacts(contacts.filter(contact => contact.id !== contactId));
 
@@ -60,25 +58,21 @@ export const App = () => {
       dispatch(contactRemove(contacts.filter(contact => contact.id !== contactId)))
   };
 
-// ------ перенесла в Filter.jsx----
   const changeFilter = filter => {
     // setFilter(filter);
 
     // dispatch({ type: 'changeFilter', payload: filter });
-
     dispatch(filterChange(filter))
   };
 
-
-
-  const filteredContacts = (filter) => {
+  const filteredContacts = () => {
     console.log('filter', filter)
     if (filter) {
-     
-      const visibleFriends = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase().trim())
+      console.log('filter', filter)
+      const visibleFriends = contacts.filter(el =>
+        el.name.toLowerCase().includes(filter.toLowerCase().trim())
       );
-
+       console.log('contacts', contacts)
       return visibleFriends;
     } else {
       return contacts;

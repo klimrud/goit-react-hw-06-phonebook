@@ -5,17 +5,13 @@ import { filterChange } from './actions';
 import { initialStateFilter } from './initial';
 
 export const filterReducer = createReducer(initialStateFilter, {
-  [filterChange]: (state,action) => {
+  [filterChange]: (state, action) => {
     return {
-             
-              filter: action.payload,
-            };
-          }
-
-          
+      ...state,
+      filter: action.payload,
+    };
+  },
 });
-
-
 
 // export const filterReducer = (state = initialState.filter, action) => {
 //   switch (action.type) {

@@ -1,6 +1,6 @@
 import { initialStateContacts } from './initial';
 
-const { createSlice} = require('@reduxjs/toolkit');
+const { createSlice } = require('@reduxjs/toolkit');
 // const { initialState } = require('store/initialState');
 
 const contactsSlice = createSlice({
@@ -8,12 +8,11 @@ const contactsSlice = createSlice({
   initialState: initialStateContacts,
   reducers: {
     contactCreate(state, action) {
-      //  state.contacts.push(action.payload)
-
-      return {
-        ...state,
-        contacts: [...state.contacts, action.payload],
-      };
+      state.contacts.push(action.payload);
+      // return {
+      //   ...state,
+      //   contacts: [...state.contacts, action.payload],
+      // };
     },
     contactRemove(state, action) {
       return {
