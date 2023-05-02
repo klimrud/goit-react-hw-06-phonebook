@@ -1,7 +1,7 @@
 import { initialStateContacts } from './initial';
 
 const { createSlice } = require('@reduxjs/toolkit');
-// const { initialState } = require('store/initialState');
+
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -9,10 +9,7 @@ const contactsSlice = createSlice({
   reducers: {
     contactCreate(state, action) {
       state.contacts.push(action.payload);
-      // return {
-      //   ...state,
-      //   contacts: [...state.contacts, action.payload],
-      // };
+   
     },
     contactRemove(state, action) {
       return {

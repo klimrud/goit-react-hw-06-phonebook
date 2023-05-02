@@ -1,34 +1,17 @@
- import {  useState } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
+
 import css from 'components/ContactForm/ContactForm.module.css';
 
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-// ------
-
-
-// const [state, dispatch] = useReducer(reducer,{
-//   name:'',
-//   number: '',
-// })
-
-// dispatch({
-//   type: 'handleStatSubmit',
-//   payload: {
-//      id: '',
-//      name:'',
-//      number: '',}
-// })
-
-
-// ----
   const handleChange = ({ target: { name, value } }) => {
     if (name === 'name') setName(value);
     else if (name === 'number') setNumber(value);
   };
-  
+
   const handleSubmit = e => {
     e.preventDefault();
 

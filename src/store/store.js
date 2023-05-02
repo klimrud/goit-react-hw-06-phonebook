@@ -1,5 +1,4 @@
-// import { type } from "@testing-library/user-event/dist/type";
-// import { createStore } from "redux";
+
 import { configureStore } from '@reduxjs/toolkit';
 import { reducer as rootReducer } from './reducer';
 
@@ -34,13 +33,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// export const store = createStore(reducer);
-
-// console.log('store', store.getState());
-// store.dispatch({type:'changeFilter', payload:{filter: 'newName'}})
-
-// console.log('store', store.getState());
-
-// store.dispatch({type:'createContact', payload:{name: 'newName', number: 'newNumber'} })
-// console.log('store', store.getState());

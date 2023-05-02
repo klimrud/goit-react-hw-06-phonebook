@@ -1,21 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IoTrashBin } from 'react-icons/io5';
+
 import css from 'components/ContactList/ContactList.module.css';
-// import { useDispatch, useSelector } from 'react-redux';
-//  import { contactRemove } from 'store/contacts/slice';
-//  import { contactRemove } from 'store/contacts/actions';
 
 export const ContactList = ({ contacts = [], onDelete }) => {
-  //   const { contacts } = useSelector(state => state.contacts);
-  //   const dispatch = useDispatch();
-
-  //   const removeContact = contactId => {
-  // //  dispatch(contactRemove(contacts,contactId))
-  //  dispatch(contactRemove(contacts.filter(contact => contact.id !== contactId)))
-
-  // };
-
   return (
     <section>
       <div className={css.contactContainer}>
@@ -32,10 +21,7 @@ export const ContactList = ({ contacts = [], onDelete }) => {
             <button
               type="click"
               className={css.btnIcon}
-              onClick={
-                () => onDelete(id)
-                // removeContact(id)
-              }
+              onClick={() => onDelete(id)}
             >
               <span className={css.stats}>
                 <IoTrashBin className={css.icon} />

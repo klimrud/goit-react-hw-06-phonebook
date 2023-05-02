@@ -1,31 +1,17 @@
-// import { useEffect } from 'react';
-
 import { ContactForm } from './ContactForm/ContactForm.jsx';
 import { Filter } from './Filter/Filter.jsx';
 import { ContactList } from './ContactList/ContactList.jsx';
-import { useDispatch, useSelector } from 'react-redux';
- import { contactCreate, contactRemove } from 'store/contacts/slice.js';
-import { filterChange } from 'store/filter/actions.js';
-// import { contactCreate} from 'store/contacts/actions.js';
-// import { filterChange } from 'store/filter/actions.js';
+import { Toaster, toast } from 'react-hot-toast';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { contactCreate, contactRemove } from 'store/contacts/slice.js';
+import { filterChange } from 'store/filter/slice.js';
 
 export const App = () => {
-  // const [contacts, setContacts] = useState(
-  //   JSON.parse(localStorage.getItem('contacts')) || []
-  // );
-  //  const [filter, setFilter] = useState('');
-
-  const { contacts, filter } = useSelector(state => state.contacts);
-
-  // console.log('state', filter);
-  // console.log('state', contacts);
+  const { contacts } = useSelector(state => state.contacts);
+  const { filter } = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
 
   const createContact = contact => {
     if (
@@ -33,46 +19,27 @@ export const App = () => {
         el => el.name === contact.name && el.number === contact.number
       )
     ) {
-      alert(`${contact.name} is already in contacts`);
+      toast.success(`${contact.name} is already in contacts`);
     } else {
-      // setContacts(prev => [...prev, contact]);
-
-      // dispatch({
-      //   type: 'createContact',
-      //   payload: {
-      //     name: `${contact.name}`,
-      //     number: `${contact.number}`,
-      //   },
-      // });
       dispatch(contactCreate(contact));
     }
   };
- 
-  const removeContact = contactId => {
-    // setContacts(contacts.filter(contact => contact.id !== contactId));
 
-    // dispatch({
-    //   type: 'removeContact',
-    //   payload: contacts.filter(contact => contact.id !== contactId),
-    // });
-      dispatch(contactRemove(contacts.filter(contact => contact.id !== contactId)))
+  const removeContact = contactId => {
+    dispatch(
+      contactRemove(contacts.filter(contact => contact.id !== contactId))
+    );
   };
 
   const changeFilter = filter => {
-    // setFilter(filter);
-
-    // dispatch({ type: 'changeFilter', payload: filter });
-    dispatch(filterChange(filter))
+    dispatch(filterChange(filter));
   };
 
   const filteredContacts = () => {
-    console.log('filter', filter)
     if (filter) {
-      console.log('filter', filter)
       const visibleFriends = contacts.filter(el =>
         el.name.toLowerCase().includes(filter.toLowerCase().trim())
       );
-       console.log('contacts', contacts)
       return visibleFriends;
     } else {
       return contacts;
@@ -86,18 +53,38 @@ export const App = () => {
 
       <h2>Contacts</h2>
       {contacts.length > 1 && (
-        <Filter filter={filter} 
-         onChange={changeFilter} 
-        />
+        <Filter filter={filter} onChange={changeFilter} />
       )}
       {contacts.length > 0 ? (
-        <ContactList 
-       contacts={filteredContacts()} 
-         onDelete={removeContact} 
-        />
+        <ContactList contacts={filteredContacts()} onDelete={removeContact} />
       ) : (
         <p className="title">No contacts</p>
       )}
+      <Toaster
+        position="top-left"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: '',
+          duration: 5000,
+          style: {
+            background: 'rgb(47, 155, 255)',
+            color: '#fff',
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: 'green',
+              secondary: 'black',
+            },
+          },
+        }}
+      />
     </div>
   );
 };
